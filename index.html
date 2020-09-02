@@ -29,7 +29,7 @@
 
 
     <div class="container">
-        <form method="post" id="ministransForm" class="form-horizontal " role="form" name="submit-to-google-sheet">
+        <form method="post" id="ministransForm" class="form-horizontal " role="form" name="submit-to-google-sheet" >
             <h2>Ministráns Közösség Jelentkezési/Adategyeztetési-lap</h2>
             <div id="ministransAdatai">
                 <h3>Ministráns adatai:</h3>
@@ -44,7 +44,7 @@
                     <label for="ministransNeve" class="col-sm-3 control-label">Ministráns neve:</label>
                     <div class="col-sm-9">
                         <input type="text" id="firstName" name="ministransNeve" placeholder="Ministráns neve"
-                            class="form-control" autofocus required>
+                            class="form-control" required>
                             <div class="valid-feedback">Rendben.</div>
                             <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                     </div>
@@ -53,15 +53,15 @@
                     <label for="szuletesNap" class="col-sm-3 control-label">Ministráns születésnapja: </label>
                     <div class="col-sm-9">
                         <input type="date" name="birthDate" id="birthDate" class="form-control" required>
-                        <div class="valid-feedback">Rendben.</div>
-                        <div class="invalid-feedback">Kérjük add meg mikor születtél.</div>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                     </div>
                 </div>
                 <div class="form-group was-validated">
                     <label for="nevNap" class="col-sm-3 control-label">Ministráns névnapja: </label>
                     <div class="col-sm-9">
                         <input type="text" name="nameDay" id="nameDay" placeholder="Ministráns névnapja"
-                            class="form-control" autofocus required>
+                            class="form-control"  required>
                             <div class="valid-feedback">Rendben.</div>
                             <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                     </div>
@@ -70,11 +70,10 @@
                     <label for="phoneNumber" class="col-sm-3 control-label">Ministráns telefonszáma: </label>
                     <div class="col-sm-9">
                         <input type="phoneNumber" name="phoneNumber" id="phoneNumber"
-                            placeholder="Ministráns telefonszáma" class="form-control" novalidate>
-                            
+                            placeholder="Ministráns telefonszáma" class="form-control">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" >
                     <label for="email" class="col-sm-3 control-label">Ministráns email címe: </label>
                     <div class="col-sm-9">
                         <input type="email" name="email" id="email" placeholder="Ministráns email címe"
@@ -98,11 +97,12 @@
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4">
                         <select class="form-control form-control-lg" name="ministransType" id="ministransType" required>
-                            <option value="valassz" selected disabled>Kérjük válassz egyet...</option>
-                            <option value="ministraltam" >Igen, már ministrálok.</option>
+                            <option disabled selected>Kérjük válassz egyet...</option>
+                            <option value="ministraltam">Igen, már ministrálok.</option>
                             <option value="nemministraltam">Nem, még nem ministráltam.</option>
-                         </select>
-                         <br>
+
+                        </select>
+                        
                         <div class="valid-feedback">Rendben.</div>
                         <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                         <!--
@@ -118,15 +118,15 @@
                     </div>
                     <div class="col-sm-4"></div>
                 </div>
-                <div class="answer was-validated" id="ministraltam" style="display: none;">
+                <div class="answer" id="ministraltam" style="display: none;">
                     <div class="form-group">
                         <label for="ministralasKezdete" class="col-sm-3 control-label">Mikor kezdtél el ministrálni:
                         </label>
                         <div class="col-sm-9">
                             <input type="text" id="ministralasKezdete" placeholder="Mikor kezdél el ministrálni?"
                                 class="form-control" name="ministralasKezdete" required>
-                                <div class="valid-feedback">Rendben.</div>
-                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -134,8 +134,8 @@
                             eddig:</label>
                         <div class="col-sm-9">
                             <select name="ministransFokozatok" id="ministransFokozatok"
-                                class="col-sm-6 form-control form-control-lg" required>
-                                <option selected disabled>Válaszd ki a legmagasabb fokozatot, amiből vizsgát szereztél: </option>
+                                class="col-md-6 form-control form-control-lg" required>
+                                <option disabled selected>Válaszd ki a legmagasabb fokozatot, amiből vizsgát szereztél: </option>
                                 <option value="nem emlekszem">Nem tudom, nem emlékszem.</option>
                                 <option value="nem vizsgaztam">Még nem vizsgáztam</option>
                                 <option value="kisministrans">Kisministráns</option>
@@ -148,7 +148,7 @@
                                 <option value="bakulista">Bakulista</option>
                                 <option value="infulista">Infulista</option>
                             </select>
-                            <br>
+                            
                             <div class="valid-feedback">Rendben.</div>
                             <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                         </div>
@@ -175,13 +175,15 @@
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">
                     <select class="form-control form-control-lg" name="contactType" id="contactType" required>
-                        <option value="valassz" selected disabled>Kérjük válassz egyet...</option>
+                        <option disabled selected>Kérjük válassz egyet...</option>
                         <option value="edesanya">Édesanya</option>
                         <option value="edesapa">Édesapa</option>
                         <option value="mindketten">Mindketten</option>
 
                     </select>
-
+                    
+                    <div class="valid-feedback">Rendben.</div>
+                    <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                 </div>
 
                 <div class="col-sm-4"></div>
@@ -199,7 +201,9 @@
                         <label for="edesanyaNeve" class="col-sm-3 control-label">Édesanya neve:</label>
                         <div class="col-sm-9">
                             <input type="text" name="motherName" id="firstName" placeholder="Édesanya neve"
-                                class="form-control" autofocus required>
+                                class="form-control" required>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -207,8 +211,8 @@
                         <div class="col-sm-9">
                             <input type="phoneNumber" name="motherPhone" id="phoneNumber"
                                 placeholder="Édesanya telefonszáma" class="form-control" required>
-                                <div class="valid-feedback">Rendben.</div>
-                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>>
                         </div>
                     </div>
                     <div class="form-group">
@@ -216,8 +220,8 @@
                         <div class="col-sm-9">
                             <input type="email" name="motherEmail" id="email" placeholder="Édesanya email címe"
                                 class="form-control" name="email" required>
-                                <div class="valid-feedback">Rendben.</div>
-                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>>
                         </div>
                     </div>
                 </div>
@@ -229,9 +233,9 @@
                         <label for="edesanyaNeve" class="col-sm-3 control-label">Édesapa neve:</label>
                         <div class="col-sm-9">
                             <input type="text" name="fatherName" id="firstName" placeholder="Édesapa neve"
-                                class="form-control" autofocus required>
-                                <div class="valid-feedback">Rendben.</div>
-                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                                class="form-control"  required>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -239,8 +243,8 @@
                         <div class="col-sm-9">
                             <input type="phoneNumber" name="fatherPhone" id="phoneNumber"
                                 placeholder="Édesapa telefonszáma" class="form-control" required>
-                                <div class="valid-feedback">Rendben.</div>
-                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>>
                         </div>
                     </div>
                     <div class="form-group">
@@ -248,8 +252,8 @@
                         <div class="col-sm-9">
                             <input type="email" name="fatherEmail" id="email" placeholder="Édesapa email címe"
                                 class="form-control" name="email" required>
-                                <div class="valid-feedback">Rendben.</div>
-                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>>
                         </div>
                     </div>
                 </div>
@@ -261,9 +265,9 @@
                         <label for="edesanyaNeve" class="col-sm-3 control-label">Édesanya neve:</label>
                         <div class="col-sm-9">
                             <input type="text" name="motherName" id="firstName" placeholder="Édesanya neve"
-                                class="form-control" autofocus required>
-                                <div class="valid-feedback">Rendben.</div>
-                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                                class="form-control" required>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>>
                         </div>
                     </div>
                     <div class="form-group">
@@ -271,17 +275,17 @@
                         <div class="col-sm-9">
                             <input type="phoneNumber" name="motherPhone" id="phoneNumber"
                                 placeholder="Édesanya telefonszáma" class="form-control" required>
-                                <div class="valid-feedback">Rendben.</div>
-                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="edesanyaEmail" class="col-sm-3 control-label">Édesanya email címe: </label>
                         <div class="col-sm-9">
                             <input type="email" name="motherEmail" id="email" placeholder="Édesanya email címe"
-                                class="form-control" name="email"  required>
-                                <div class="valid-feedback">Rendben.</div>
-                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                                class="form-control" name="email" required>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>>
                         </div>
                     </div>
                     <div id="edesapaAdatai">
@@ -291,18 +295,18 @@
                         <label for="edesanyaNeve" class="col-sm-3 control-label">Édesapa neve:</label>
                         <div class="col-sm-9">
                             <input type="text" name="fatherName" id="firstName" placeholder="Édesapa neve"
-                                class="form-control" autofocus  required>
-                                <div class="valid-feedback">Rendben.</div>
-                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                                class="form-control"  required>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="edesapaTelefon" class="col-sm-3 control-label">Édesapa telefonszáma: </label>
                         <div class="col-sm-9">
                             <input type="phoneNumber" name="fatherPhone" id="phoneNumber"
-                                placeholder="Édesapa telefonszáma" class="form-control" required>
-                                <div class="valid-feedback">Rendben.</div>
-                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                                placeholder="Édesapa telefonszáma" class="form-control"  required>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>>
                         </div>
                     </div>
                     <div class="form-group">
@@ -310,13 +314,13 @@
                         <div class="col-sm-9">
                             <input type="email" name="fatherEmail" id="email" placeholder="Édesapa email címe"
                                 class="form-control" name="email" required>
-                                <div class="valid-feedback">Rendben.</div>
-                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="ertesitesiCim" class="col-sm-3 control-label">Értesítési cím:</label>
+                    <label for="ertesitesiCim" class="col-sm-3 control-label">Értesítési cím: </label>
                     <div class="col-sm-9">
                         <input type="text" name="address" id="ertesitesiCim" placeholder="Értesítési cím"
                             class="form-control" required>
