@@ -16,7 +16,7 @@ function submitForm(){
 
 
 //Kapcsolattartási személy választó
-jQuery('#contactType').change(function () {
+$('#contactType').change(function () {
     selection = $(this).val();
     switch (selection) {
         case 'edesanya':
