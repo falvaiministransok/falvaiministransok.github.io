@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
@@ -29,8 +28,8 @@
 
 
 
-    <div class="container" id="live-form">
-        <form class="form-horizontal" role="form" name="submit-to-google-sheet">
+    <div class="container">
+        <form method="post" id="ministransForm" class="form-horizontal " role="form" name="submit-to-google-sheet">
             <h2>Ministráns Közösség Jelentkezési/Adategyeztetési-lap</h2>
             <div id="ministransAdatai">
                 <h3>Ministráns adatai:</h3>
@@ -41,31 +40,38 @@
             </div>
             <div class="ministransAdatai">
                 <!--Ministráns adatai.-->
-                <div class="form-group">
+                <div class="form-group was-validated">
                     <label for="ministransNeve" class="col-sm-3 control-label">Ministráns neve:</label>
                     <div class="col-sm-9">
                         <input type="text" id="firstName" name="ministransNeve" placeholder="Ministráns neve"
-                            class="form-control" autofocus>
+                            class="form-control" autofocus required>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group was-validated">
                     <label for="szuletesNap" class="col-sm-3 control-label">Ministráns születésnapja: </label>
                     <div class="col-sm-9">
-                        <input type="date" name="birthDate" id="birthDate" class="form-control">
+                        <input type="date" name="birthDate" id="birthDate" class="form-control" required>
+                        <div class="valid-feedback">Rendben.</div>
+                        <div class="invalid-feedback">Kérjük add meg mikor születtél.</div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group was-validated">
                     <label for="nevNap" class="col-sm-3 control-label">Ministráns névnapja: </label>
                     <div class="col-sm-9">
                         <input type="text" name="nameDay" id="nameDay" placeholder="Ministráns névnapja"
-                            class="form-control" autofocus>
+                            class="form-control" autofocus required>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="phoneNumber" class="col-sm-3 control-label">Ministráns telefonszáma: </label>
                     <div class="col-sm-9">
                         <input type="phoneNumber" name="phoneNumber" id="phoneNumber"
-                            placeholder="Ministráns telefonszáma" class="form-control">
+                            placeholder="Ministráns telefonszáma" class="form-control" novalidate>
+                            
                     </div>
                 </div>
                 <div class="form-group">
@@ -78,20 +84,29 @@
 
             </div>
 
-            <div class="conditionalFormPart">
+            <div id="ministralasChoice" class="conditionalFormPart was-validated">
                 <!--Feltételes kitöltendő rész.-->
                 <div class="form-group">
-                    <h5>
+                    <h3>
                         Jelentkeztél már korábban ministránsnak?
-                    </h5>
+                    </h3>
                     <span class="help-block">Válaszd az igen, ha már együtt ministrálsz velünk és Szüleid is felvették
                         a kapcsolatot a Ministránsvezetővel, <br>ha még nem ministráltál velünk és idén a 2020/21-es
                         tanévben
                         szeretnél elkezdeni ministrálni jelöldbe a nem mezőt.
                     </span>
-                    <div class="col-sm-5"></div>
+                    <div class="col-sm-4"></div>
                     <div class="col-sm-4">
-                        <label>
+                        <select class="form-control form-control-lg" name="ministransType" id="ministransType" required>
+                            <option value="valassz" selected disabled>Kérjük válassz egyet...</option>
+                            <option value="ministraltam" >Igen, már ministrálok.</option>
+                            <option value="nemministraltam">Nem, még nem ministráltam.</option>
+                         </select>
+                         <br>
+                        <div class="valid-feedback">Rendben.</div>
+                        <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                        <!--
+                           <label>
                             <input type="radio" id="yes" name="yesOrNo" value="yes"
                                 onchange="displayQuestion(this.value)" />Igen, már
                             ministrálok.</label>
@@ -99,21 +114,19 @@
                             <input type="radio" id="no" name="yesOrNo" value="no"
                                 onchange="displayQuestion(this.value)" />Nem, még nem
                             ministráltam.</label>
+                       -->
                     </div>
-                    <!--<select onchange="ShowHideDiv()" id="reasonList" class="col-md-6 form-control form-control-lg" required>
-                                    <option>Kérjük válassz egyet:</option>
-                                    <option value="Y">Igen</option>
-                                    <option value="N">Nem</option>
-                                </select>-->
-                    <div class="col-sm-3"></div>
+                    <div class="col-sm-4"></div>
                 </div>
-                <div class="answer" id="yesQuestion" style="display: none;">
+                <div class="answer was-validated" id="ministraltam" style="display: none;">
                     <div class="form-group">
                         <label for="ministralasKezdete" class="col-sm-3 control-label">Mikor kezdtél el ministrálni:
                         </label>
                         <div class="col-sm-9">
                             <input type="text" id="ministralasKezdete" placeholder="Mikor kezdél el ministrálni?"
-                                class="form-control" name="ministralasKezdete">
+                                class="form-control" name="ministralasKezdete" required>
+                                <div class="valid-feedback">Rendben.</div>
+                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -121,8 +134,8 @@
                             eddig:</label>
                         <div class="col-sm-9">
                             <select name="ministransFokozatok" id="ministransFokozatok"
-                                class="col-md-6 form-control form-control-lg" required>
-                                <option>Válaszd ki a legmagasabb fokozatot, amiből vizsgát szereztél: </option>
+                                class="col-sm-6 form-control form-control-lg" required>
+                                <option selected disabled>Válaszd ki a legmagasabb fokozatot, amiből vizsgát szereztél: </option>
                                 <option value="nem emlekszem">Nem tudom, nem emlékszem.</option>
                                 <option value="nem vizsgaztam">Még nem vizsgáztam</option>
                                 <option value="kisministrans">Kisministráns</option>
@@ -135,116 +148,202 @@
                                 <option value="bakulista">Bakulista</option>
                                 <option value="infulista">Infulista</option>
                             </select>
+                            <br>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-8">
-                        <div class="answer" id="noQuestion" style="display: none;">
+                        <div class="answer" id="nemministraltam" style="display: none;">
                             <span class="help-block">Ha még nem ministráltál, akkor most pont jó helyen jársz,
-                                a jelentkezés elküldése után <br>a Ministránsvezető tájékoztat Titeket, mikor lesz a legközelebbi
+                                a jelentkezés elküldése után <br>a Ministránsvezető tájékoztat Titeket, mikor lesz a
+                                legközelebbi
                                 ministráns foglalkozás, amire már téged is várunk.
                             </span>
                         </div>
                     </div>
                     <div class="col-sm-2"></div>
                 </div>
-               
+
 
             </div>
-            <div class="szulokAdatai">
-                <!--Szülők adatai és értesítési cím-->
-                <div id="szülőkAdatai">
-                    <h3>Szülők adatai:</h3>
+            <div id="contactChoice" class="form-group was-validated">
+                <h3>Szülők kapcsolattartási adatai</h3>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <select class="form-control form-control-lg" name="contactType" id="contactType" required>
+                        <option value="valassz" selected disabled>Kérjük válassz egyet...</option>
+                        <option value="edesanya">Édesanya</option>
+                        <option value="edesapa">Édesapa</option>
+                        <option value="mindketten">Mindketten</option>
+
+                    </select>
+
                 </div>
-                <div id="edesAdatai">
-                    <h4>Édesanya kapcsolattartási adatai:</h3>
+
+                <div class="col-sm-4"></div>
+            </div>
+            <br>
+
+
+            <div class="szulokAdatai was-validated">
+                <!-- Szülők adatai és értesítési cím-->
+                <div id="edesanya" style="display:none;">
+                    <div id="edesanyaAdatai">
+                        <h4>Édesanya kapcsolattartási adatai:</h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="edesanyaNeve" class="col-sm-3 control-label">Édesanya neve:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="motherName" id="firstName" placeholder="Édesanya neve"
+                                class="form-control" autofocus required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edesanyaTelefon" class="col-sm-3 control-label">Édesanya telefonszáma: </label>
+                        <div class="col-sm-9">
+                            <input type="phoneNumber" name="motherPhone" id="phoneNumber"
+                                placeholder="Édesanya telefonszáma" class="form-control" required>
+                                <div class="valid-feedback">Rendben.</div>
+                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edesanyaEmail" class="col-sm-3 control-label">Édesanya email címe: </label>
+                        <div class="col-sm-9">
+                            <input type="email" name="motherEmail" id="email" placeholder="Édesanya email címe"
+                                class="form-control" name="email" required>
+                                <div class="valid-feedback">Rendben.</div>
+                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="edesanyaNeve" class="col-sm-3 control-label">Édesanya neve:</label>
-                    <div class="col-sm-9">
-                        <input type="text" name="motherName" id="firstName" placeholder="Édesanya neve"
-                            class="form-control" autofocus>
+                <div id="edesapa" style="display:none;">
+                    <div id="edesapaAdatai">
+                        <h4>Édesapa kapcsolattartási adatai:</h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="edesanyaNeve" class="col-sm-3 control-label">Édesapa neve:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="fatherName" id="firstName" placeholder="Édesapa neve"
+                                class="form-control" autofocus required>
+                                <div class="valid-feedback">Rendben.</div>
+                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edesapaTelefon" class="col-sm-3 control-label">Édesapa telefonszáma: </label>
+                        <div class="col-sm-9">
+                            <input type="phoneNumber" name="fatherPhone" id="phoneNumber"
+                                placeholder="Édesapa telefonszáma" class="form-control" required>
+                                <div class="valid-feedback">Rendben.</div>
+                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edesapaEmail" class="col-sm-3 control-label">Édesapa email címe: </label>
+                        <div class="col-sm-9">
+                            <input type="email" name="fatherEmail" id="email" placeholder="Édesapa email címe"
+                                class="form-control" name="email" required>
+                                <div class="valid-feedback">Rendben.</div>
+                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="mindketten" style="display:none;">
+                    <div id="edesanyaAdatai">
+                        <h4>Édesanya kapcsolattartási adatai:</h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="edesanyaNeve" class="col-sm-3 control-label">Édesanya neve:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="motherName" id="firstName" placeholder="Édesanya neve"
+                                class="form-control" autofocus required>
+                                <div class="valid-feedback">Rendben.</div>
+                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edesanyaTelefon" class="col-sm-3 control-label">Édesanya telefonszáma: </label>
+                        <div class="col-sm-9">
+                            <input type="phoneNumber" name="motherPhone" id="phoneNumber"
+                                placeholder="Édesanya telefonszáma" class="form-control" required>
+                                <div class="valid-feedback">Rendben.</div>
+                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edesanyaEmail" class="col-sm-3 control-label">Édesanya email címe: </label>
+                        <div class="col-sm-9">
+                            <input type="email" name="motherEmail" id="email" placeholder="Édesanya email címe"
+                                class="form-control" name="email"  required>
+                                <div class="valid-feedback">Rendben.</div>
+                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                        </div>
+                    </div>
+                    <div id="edesapaAdatai">
+                        <h4>Édesapa kapcsolattartási adatai:</h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="edesanyaNeve" class="col-sm-3 control-label">Édesapa neve:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="fatherName" id="firstName" placeholder="Édesapa neve"
+                                class="form-control" autofocus  required>
+                                <div class="valid-feedback">Rendben.</div>
+                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edesapaTelefon" class="col-sm-3 control-label">Édesapa telefonszáma: </label>
+                        <div class="col-sm-9">
+                            <input type="phoneNumber" name="fatherPhone" id="phoneNumber"
+                                placeholder="Édesapa telefonszáma" class="form-control" required>
+                                <div class="valid-feedback">Rendben.</div>
+                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edesapaEmail" class="col-sm-3 control-label">Édesapa email címe: </label>
+                        <div class="col-sm-9">
+                            <input type="email" name="fatherEmail" id="email" placeholder="Édesapa email címe"
+                                class="form-control" name="email" required>
+                                <div class="valid-feedback">Rendben.</div>
+                                <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="edesanyaTelefon" class="col-sm-3 control-label">Édesanya telefonszáma: </label>
-                    <div class="col-sm-9">
-                        <input type="phoneNumber" name="motherPhone" id="phoneNumber"
-                            placeholder="Édesanya telefonszáma" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="edesanyaEmail" class="col-sm-3 control-label">Édesanya email címe: </label>
-                    <div class="col-sm-9">
-                        <input type="email" name="motherEmail" id="email" placeholder="Édesanya email címe"
-                            class="form-control" name="email">
-                    </div>
-                </div>
-                <div id="edesAdatai">
-                    <h4>Édesapa kapcsolattartási adatai:</h3>
-                </div>
-                <div class="form-group">
-                    <label for="edesanyaNeve" class="col-sm-3 control-label">Édesapa neve:</label>
-                    <div class="col-sm-9">
-                        <input type="text" name="fatherName" id="firstName" placeholder="Édesapa neve"
-                            class="form-control" autofocus>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="edesapaTelefon" class="col-sm-3 control-label">Édesapa telefonszáma: </label>
-                    <div class="col-sm-9">
-                        <input type="phoneNumber" name="fatherPhone" id="phoneNumber" placeholder="Édesapa telefonszáma"
-                            class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="edesapaEmail" class="col-sm-3 control-label">Édesapa email címe: </label>
-                    <div class="col-sm-9">
-                        <input type="email" name="fatherEmail" id="email" placeholder="Édesapa email címe"
-                            class="form-control" name="email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="ertesitesiCim" class="col-sm-3 control-label">Értesítési cím: </label>
+                    <label for="ertesitesiCim" class="col-sm-3 control-label">Értesítési cím:</label>
                     <div class="col-sm-9">
                         <input type="text" name="address" id="ertesitesiCim" placeholder="Értesítési cím"
-                            class="form-control">
+                            class="form-control" required>
+                            <div class="valid-feedback">Rendben.</div>
+                            <div class="invalid-feedback">Kérjük töltsd ki ezt a mezőt.</div>
                     </div>
                 </div>
             </div>
+
             <div class="submitButton">
                 <div class="form-group">
                     <div class="col-sm-5"></div>
                     <div class="col-sm-2">
-                        <button type="submit" class="btn btn-primary btn-block">Küldés</button>
+                        <button onclick="submitForm()" type="submit" class="btn btn-primary btn-block">Küldés</button>
 
                     </div>
                     <div class="col-sm-5"></div>
                 </div>
             </div>
 
-
         </form>
-    </div> 
+
+    </div>
 
     <script src="https://wzrd.in/standalone/formdata-polyfill"></script>
     <script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
     <script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxj3ESZNGeJGSGHuiPQHw6Qp5sJvXZ1HXGJu5Hk/exec'
-        const form = document.forms['submit-to-google-sheet']
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => console.log('Success!', response))
-                .catch(error => console.error('Error!', error.message))
-
-        })
-        
-    </script>
     <script src="/js/main.js"></script>
 </body>
 
