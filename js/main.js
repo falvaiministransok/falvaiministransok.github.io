@@ -63,7 +63,7 @@ jQuery('#ministransType').change(function () {
             $('#ministraltam').hide();
             break;
         default:
-            $('#edesanya', '#edesapa', '#mindketten').hide();
+            $('#ministraltam', '#nemministraltam').hide();
             break;
 
     }
