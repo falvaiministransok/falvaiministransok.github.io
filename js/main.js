@@ -1,38 +1,70 @@
-/*function Change() {
+//Form adatfeltöltés, google spreadsheetbe.
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxj3ESZNGeJGSGHuiPQHw6Qp5sJvXZ1HXGJu5Hk/exec'
+const form = document.forms['submit-to-google-sheet']
 
-    if ((document.getElementById('answerYes').checked)) {
-        document.getElementById('Igen').style.visibility = "visible";
+function submitForm(){
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => alert('Success!', response))
+            .catch(error => alert('Error!', error.message))
+            
+        
+    });
+    
+};
+
+
+//Kapcsolattartási személy választó
+jQuery('#contactType').change(function () {
+    selection = $(this).val();
+    switch (selection) {
+        case 'edesanya':
+            $('#edesanya').show();
+            $('#edesapa').hide();
+            $('#mindketten').hide();
+            break;
+        case 'edesapa':
+            $('#edesapa').show();
+            $('#edesanya').hide();
+            $('#mindketten').hide();
+            break;
+        case 'mindketten':
+            $('#mindketten').show();
+            $('#edesanya').hide();
+            $('#edesapa').hide();
+            break;
+        case 'valassz':
+            $('#mindketten').hide();
+            $('#edesanya').hide();
+            $('#edesapa').hide();
+            break;
+        default:
+            $('#edesanya', '#edesapa', '#mindketten').hide();
+            break;
+        
     }
-    else {
-        document.getElementById('Igen').style.visibility = "hidden";
+});
+
+//Ministrans szolgálat választó.
+jQuery('#ministransType').change(function () {
+    selection = $(this).val();
+    switch (selection) {
+        case 'valassz':
+            $('#ministraltam').hide();
+            $('#nemministraltam').hide();
+            break;
+        case 'ministraltam':
+            $('#ministraltam').show();
+            $('#nemministraltam').hide();
+            break;
+        case 'nemministraltam':
+            $('#nemministraltam').show();
+            $('#ministraltam').hide();
+            break;
+        default:
+            $('#edesanya', '#edesapa', '#mindketten').hide();
+            break;
+
     }
-    if ((document.getElementById('answerNo').checked)) {
-        document.getElementById('Nem').style.visibility = "visible";
-    }
-    else {
-        document.getElementById('Nem').style.visibility = "hidden";
-    }
-}*/
-
-function displayQuestion(answer) {
-
-    document.getElementById(answer + 'Question').style.display = "block";
-
-    if (answer == "yes") { // hide the div that is not selected
-
-        document.getElementById('noQuestion').style.display = "none";
-
-    } else if (answer == "no") {
-
-        document.getElementById('yesQuestion').style.display = "none";
-
-    }
-
-}
-
-var btnClear = document.querySelector('button');
-var inputs = document.querySelectorAll('input');
-
-btnClear.addEventListener('click', () => {
-    inputs.forEach(input => input.value = '');
 });
